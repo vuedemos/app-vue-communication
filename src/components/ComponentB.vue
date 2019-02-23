@@ -1,9 +1,11 @@
 <template>
     <div class="component-b">
-        <div class="mask" v-if="show">
-            <div class="mask-overlay"></div>
-            <ComponentC v-bind="$attrs" v-on="$listeners" />
-        </div>
+        <h3>组件B中的props: {{ age }}</h3>
+        <p>组件B中的$attrs: {{ $attrs }}</p>
+        <p>组件B中的$listeners: {{ $listeners }}</p>
+
+        <hr />
+        <ComponentC v-bind="$attrs" v-on="$listeners" />
     </div>
 </template>
 
@@ -13,9 +15,9 @@ import ComponentC from './ComponentC'
 export default {
     name: 'ComponentB',
     props: {
-        show: {
-            type: Boolean,
-            default: false
+        age: {
+            type: Number,
+            default: 30
         }
     },
     inheritAttrs: false,
@@ -23,6 +25,7 @@ export default {
         ComponentC
     },
     mounted () {
+        this.$emit('test1')
         console.log('ComponentB',this.$attrs, this.$listeners)
     }
 }
