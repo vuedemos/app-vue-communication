@@ -1,11 +1,13 @@
 <template>
     <div class="component-a">
-        <ComponentB :age="age" :name="name" v-on:test1="onTest1" v-on:test2="onTest2" />
+        <button @click="toggle">显示警告框</button>
+        <ComponentB :show="isShow" :title="title" :content="content" @on-submit="submit" />
     </div>
 </template>
 
 <script>
 import ComponentB from './ComponentB'
+import ComponentC from './ComponentC'
 
 export default {
     name: 'ComponentA',
@@ -13,22 +15,24 @@ export default {
         ComponentB
     },
     methods: {
-        onTest1() {
-            console.log('test1 running...')
+        submit () {
+            this.isShow = false
         },
-        onTest2() {
-            console.log('test2 running...')
+        toggle () {
+            this.isShow = true
         }
     },
     data () {
         return {
-            age: 23,
-            name: 'w3cplus'
+            isShow: false,
+            title: '我是标题',
+            content: '我是内容'
         }
     }
 }
 </script>
 
 <style scoped>
-
+    
+    
 </style>

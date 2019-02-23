@@ -1,8 +1,10 @@
 <template>
     <div class="component-c">
-        <h3>组件C (ComponentC)</h3>
-        <p>组件C中的props: {{ name }}</p>
-        <p>$attrs: {{ $attrs }}</p>
+        <div class="alert">
+            <h2>{{ title }}</h2>
+            <div class="alert-content">{{ content }}</div>
+            <button @click="submit">确定</button>
+        </div>
     </div>
 </template>
 
@@ -10,19 +12,37 @@
 export default {
     name: 'ComponentC',
     props: {
-        name: {
+        title: {
             type: String,
-            default: '大漠'
+            default: '警告标题'
+        },
+        content: {
+            type: String,
+            default: '警告内容'
         }
     },
     inheritAttrs: false,
+    methods: {
+        submit () {
+            this.$emit('on-submit')
+        }
+    },
     mounted () {
-        this.$emit('test2')
-        console.log(this.$attrs, this.$$listeners)
+        console.log('ComponentC',this.$attrs, this.$listeners)
     }
 }
 </script>
 
 <style scoped>
-
+    .alert {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        width: 300px;
+        height: 200px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: #fff;
+        transform: translate(-50%, -50%);
+    }
 </style>
