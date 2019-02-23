@@ -12,7 +12,8 @@
       :primary-button-content="primaryButtonContent"
       @on-save="save"
       @on-close="close"
-      ></Modal>
+      >
+      </Modal>
     <ModalBackdrop :show="isShow" @on-close="close"></ModalBackdrop>
   </div>
 </template>
